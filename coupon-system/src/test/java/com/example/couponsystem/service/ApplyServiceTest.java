@@ -39,7 +39,7 @@ class ApplyServiceTest {
         CountDownLatch countDownLatch = new CountDownLatch(threadCount);
 
         for (int i = 0; i < threadCount; i++) {
-            long userId = i; // 각 스레드에 고유한 userId 할당
+            long userId = i;
             executorService.submit(() -> {
                 try {
                     applyService.apply(userId);
@@ -53,8 +53,7 @@ class ApplyServiceTest {
 
         long count = couponRepository.count();
 
-        // 이 부분에서 기대하는 값(정확한 응모 수)을 정의
-        assertThat(count).isEqualTo(100); // 여기서 100은 여러명 응모 시 기대하는 쿠폰 수
-        executorService.shutdown(); // executorService 종료
+        assertThat(count).isEqualTo(100);
+        executorService.shutdown();
     }
 }
